@@ -373,236 +373,355 @@ document
 
   });
 /* ================= KNOWLEDGE TEST ================= */
+<script>
 
-.quiz-section {
-  position: relative;
-}
+const quizQuestions = [
 
-.quiz-container {
-  max-width: 900px;
-  margin: 50px auto 0;
-  padding: 40px;
-  border: 1px solid rgba(180, 150, 80, 0.25);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-}
+  {
+    question: "What are the five pillars of the Philippine Criminal Justice System?",
+    options: [
+      "Police, Prosecution, Courts, Corrections, Community",
+      "Police, Military, Courts, Jail, Government",
+      "Police, Senate, Courts, Prison, Community",
+      "Police, Prosecution, Military, Courts, Corrections"
+    ],
+    answer: 0
+  },
 
-.quiz-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 25px;
-}
+  {
+    question: "Which pillar is primarily responsible for investigating crimes and apprehending suspects?",
+    options: [
+      "Courts",
+      "Police",
+      "Corrections",
+      "Community"
+    ],
+    answer: 1
+  },
 
-.quiz-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: #b8944c;
-  margin-bottom: 8px;
-}
+  {
+    question: "What is the primary role of the prosecution pillar?",
+    options: [
+      "Arrest criminals",
+      "Manage prisons",
+      "Determine whether there is sufficient basis to file criminal charges",
+      "Create laws"
+    ],
+    answer: 2
+  },
 
-.quiz-header h3 {
-  margin: 0;
-  font-size: 22px;
-}
+  {
+    question: "Which pillar determines the guilt or innocence of an accused person through judicial proceedings?",
+    options: [
+      "Police",
+      "Prosecution",
+      "Courts",
+      "Community"
+    ],
+    answer: 2
+  },
 
-.quiz-score-box {
-  padding: 12px 18px;
-  border-radius: 10px;
-  background: rgba(184, 148, 76, 0.12);
-  font-size: 14px;
-  white-space: nowrap;
-}
+  {
+    question: "What is the main purpose of the corrections pillar?",
+    options: [
+      "Investigate crimes",
+      "Rehabilitate offenders and administer correctional institutions",
+      "Prosecute suspects",
+      "Create criminal laws"
+    ],
+    answer: 1
+  },
 
-.quiz-score-box strong {
-  color: #b8944c;
-  font-size: 20px;
-}
+  {
+    question: "Why is the community considered an important pillar of the Criminal Justice System?",
+    options: [
+      "It replaces the police",
+      "It helps prevent crime, supports rehabilitation, and promotes public safety",
+      "It decides court cases",
+      "It arrests suspects"
+    ],
+    answer: 1
+  },
 
-.quiz-progress {
-  width: 100%;
-  height: 7px;
-  border-radius: 10px;
-  overflow: hidden;
-  background: rgba(128, 128, 128, 0.2);
-  margin-bottom: 35px;
-}
+  {
+    question: "What principle states that an accused person is considered innocent until proven guilty?",
+    options: [
+      "Rule of Law",
+      "Presumption of Innocence",
+      "Double Jeopardy",
+      "Judicial Review"
+    ],
+    answer: 1
+  },
 
-.quiz-progress-fill {
-  height: 100%;
-  width: 10%;
-  border-radius: 10px;
-  background: #b8944c;
-  transition: width 0.4s ease;
-}
+  {
+    question: "Which institution is primarily responsible for the investigation and prosecution of criminal cases on behalf of the government?",
+    options: [
+      "Department of Justice",
+      "Department of Education",
+      "Department of Social Welfare and Development",
+      "Department of Finance"
+    ],
+    answer: 0
+  },
 
-.quiz-question {
-  margin-bottom: 30px;
-}
+  {
+    question: "What is the ultimate goal of the Philippine Criminal Justice System?",
+    options: [
+      "To punish every accused person",
+      "To protect society, uphold justice, and maintain peace and order",
+      "To increase the number of prisoners",
+      "To eliminate all court proceedings"
+    ],
+    answer: 1
+  },
 
-.quiz-question h3 {
-  font-size: 25px;
-  line-height: 1.45;
-  margin: 0;
-}
-
-.quiz-options {
-  display: grid;
-  gap: 14px;
-}
-
-.quiz-option {
-  width: 100%;
-  padding: 17px 20px;
-  border: 1px solid rgba(128, 128, 128, 0.25);
-  border-radius: 12px;
-  background: transparent;
-  text-align: left;
-  font-family: inherit;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.quiz-option:hover {
-  transform: translateY(-2px);
-  border-color: #b8944c;
-}
-
-.quiz-option.correct {
-  border-color: #3c9b63;
-  background: rgba(60, 155, 99, 0.12);
-}
-
-.quiz-option.wrong {
-  border-color: #c54d4d;
-  background: rgba(197, 77, 77, 0.12);
-}
-
-.quiz-option:disabled {
-  cursor: default;
-}
-
-.quiz-feedback {
-  min-height: 30px;
-  margin-top: 20px;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.quiz-feedback.correct-text {
-  color: #3c9b63;
-}
-
-.quiz-feedback.wrong-text {
-  color: #c54d4d;
-}
-
-.quiz-next,
-.quiz-restart {
-  margin-top: 25px;
-  padding: 14px 25px;
-  border: none;
-  border-radius: 10px;
-  background: #b8944c;
-  color: #111;
-  font-family: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.quiz-next:hover,
-.quiz-restart:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
-.quiz-next:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.quiz-result {
-  max-width: 700px;
-  margin: 50px auto 0;
-  padding: 50px 35px;
-  text-align: center;
-  border: 1px solid rgba(180, 150, 80, 0.25);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.quiz-result-icon {
-  font-size: 50px;
-  margin-bottom: 20px;
-}
-
-.quiz-result h3 {
-  font-size: 30px;
-  margin: 15px 0;
-}
-
-.final-score {
-  margin: 20px 0;
-}
-
-.final-score strong {
-  font-size: 70px;
-  color: #b8944c;
-}
-
-.final-score span {
-  font-size: 25px;
-  opacity: 0.7;
-}
-
-.quiz-result p {
-  font-size: 16px;
-  line-height: 1.7;
-  max-width: 550px;
-  margin: 0 auto;
-}
-
-
-/* MOBILE QUIZ */
-
-@media (max-width: 700px) {
-
-  .quiz-container {
-    padding: 25px 20px;
-    margin-top: 30px;
+  {
+    question: "Which of the following best describes the relationship among the five pillars?",
+    options: [
+      "They work independently without interaction",
+      "They compete with one another",
+      "They work together to achieve justice and public safety",
+      "Only the police are responsible for criminal justice"
+    ],
+    answer: 2
   }
 
-  .quiz-header {
-    align-items: flex-start;
+];
+
+
+let currentQuestion = 0;
+let score = 0;
+
+
+const questionNumber =
+  document.getElementById("quizQuestionNumber");
+
+const questionText =
+  document.getElementById("questionText");
+
+const quizOptions =
+  document.getElementById("quizOptions");
+
+const quizFeedback =
+  document.getElementById("quizFeedback");
+
+const quizNext =
+  document.getElementById("quizNext");
+
+const quizScore =
+  document.getElementById("quizScore");
+
+const quizProgress =
+  document.getElementById("quizProgress");
+
+const quizContainer =
+  document.getElementById("quizContainer");
+
+const quizResult =
+  document.getElementById("quizResult");
+
+const finalScore =
+  document.getElementById("finalScore");
+
+const quizMessage =
+  document.getElementById("quizMessage");
+
+const quizRestart =
+  document.getElementById("quizRestart");
+
+
+function loadQuestion() {
+
+  const question = quizQuestions[currentQuestion];
+
+  questionNumber.textContent =
+    `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+
+  questionText.textContent =
+    question.question;
+
+  quizOptions.innerHTML = "";
+
+  quizFeedback.textContent = "";
+
+  quizFeedback.className = "quiz-feedback";
+
+  quizNext.disabled = true;
+
+
+  const progress =
+    (currentQuestion / quizQuestions.length) * 100;
+
+  quizProgress.style.width =
+    progress + "%";
+
+
+  question.options.forEach((option, index) => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "quiz-option";
+
+    button.textContent =
+      `${String.fromCharCode(65 + index)}. ${option}`;
+
+    button.addEventListener("click", () => {
+
+      selectAnswer(index);
+
+    });
+
+    quizOptions.appendChild(button);
+
+  });
+
+}
+
+
+function selectAnswer(selectedIndex) {
+
+  const question =
+    quizQuestions[currentQuestion];
+
+  const buttons =
+    document.querySelectorAll(".quiz-option");
+
+
+  buttons.forEach(button => {
+
+    button.disabled = true;
+
+  });
+
+
+  if (selectedIndex === question.answer) {
+
+    score++;
+
+    quizScore.textContent =
+      score;
+
+    quizFeedback.textContent =
+      "✓ Correct! Well done.";
+
+    quizFeedback.classList.add(
+      "correct"
+    );
+
+    buttons[selectedIndex].classList.add(
+      "correct-answer"
+    );
+
+  } else {
+
+    quizFeedback.textContent =
+      "✗ Incorrect. Please review the lesson and try again.";
+
+    quizFeedback.classList.add(
+      "incorrect"
+    );
+
+    buttons[selectedIndex].classList.add(
+      "wrong-answer"
+    );
+
   }
 
-  .quiz-header h3 {
-    font-size: 18px;
+
+  quizNext.disabled = false;
+
+}
+
+
+quizNext.addEventListener("click", () => {
+
+  currentQuestion++;
+
+  if (
+    currentQuestion <
+    quizQuestions.length
+  ) {
+
+    loadQuestion();
+
+  } else {
+
+    showResult();
+
   }
 
-  .quiz-score-box {
-    padding: 9px 12px;
-    font-size: 12px;
-  }
+});
 
-  .quiz-question h3 {
-    font-size: 20px;
-  }
 
-  .quiz-option {
-    padding: 15px;
-    font-size: 14px;
-  }
+function showResult() {
 
-  .final-score strong {
-    font-size: 55px;
+  quizContainer.style.display =
+    "none";
+
+  quizResult.style.display =
+    "block";
+
+  finalScore.textContent =
+    score;
+
+  quizProgress.style.width =
+    "100%";
+
+
+  if (score === 10) {
+
+    quizMessage.textContent =
+      "Excellent! You got a perfect score. You have an outstanding understanding of the Philippine Criminal Justice System.";
+
+  } else if (score >= 8) {
+
+    quizMessage.textContent =
+      "Great job! You have a strong understanding of the Philippine Criminal Justice System.";
+
+  } else if (score >= 6) {
+
+    quizMessage.textContent =
+      "Good work! You have a good understanding of the Philippine Criminal Justice System. Keep learning!";
+
+  } else if (score >= 4) {
+
+    quizMessage.textContent =
+      "Nice effort! Review the lessons and try the quiz again to improve your score.";
+
+  } else {
+
+    quizMessage.textContent =
+      "Keep studying! Review the lessons and take the quiz again to strengthen your knowledge.";
+
   }
 
 }
+
+
+quizRestart.addEventListener("click", () => {
+
+  currentQuestion = 0;
+
+  score = 0;
+
+  quizScore.textContent =
+    "0";
+
+  quizContainer.style.display =
+    "block";
+
+  quizResult.style.display =
+    "none";
+
+  loadQuestion();
+
+});
+
+
+loadQuestion();
+
+</script>
+
